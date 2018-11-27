@@ -18,15 +18,15 @@ public class GameObjects {
 	
 	void update(){
 		
-		y += 1;
+	
 
 		
 	}
 	
 	void draw(Graphics g) {
 		
-		g.fillRect(x, y, width, height);
 		
+	
 		
 	}
 	

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
   final int GAME_STATE = 1;
   final int END_STATE = 2;
   int currentState = MENU_STATE;
+  Font titleFont = new Font("Arial", Font.PLAIN, 48);
+  Rocketship player = new Rocketship(250,700,50,50);
   
   @Override
 
@@ -84,7 +87,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 void updateGameState() {
 		
-		
+		player.update();
 		
 	}
 
@@ -96,10 +99,24 @@ void updateEndState() {
 
 void drawMenuState(Graphics g) {
 	
+	
+	
 	g.setColor(Color.BLUE);
 
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height); 
 	
+	
+g.setColor(Color.green);
+	
+	g.setFont(titleFont);
+	 g.drawString("LEAGUE INVADERS", 30, 50);
+	 g.setFont(titleFont);
+	 g.drawString("(A space invaders", 50, 100);
+	 g.drawString("rip-off)", 150, 150);
+	 g.drawString("Instructions?", 50, 300);
+	 g.drawString("--press SPACE--", 100, 350);
+	 g.drawString("Just want to play?", 50, 600);
+	 g.drawString("--press ENTER--", 100, 650);
 }
 
 void drawGameState(Graphics g) {
@@ -107,6 +124,11 @@ void drawGameState(Graphics g) {
 	g.setColor(Color.BLACK);
 
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height); 
+	
+	
+g.setColor(Color.green);
+
+player.draw(g);
 	
 	
 }
@@ -117,7 +139,11 @@ void drawEndState(Graphics g) {
 
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height); 
 	
-
+	g.setColor(Color.green);
+	g.setFont(titleFont);
+	 g.drawString("YOU KILLED ENIMIES", 0, 50);
+	 g.drawString("--Press 'ENTER'--", 50, 300);
+	
 }
 	
 	
