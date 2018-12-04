@@ -2,6 +2,7 @@ import java.awt.Graphics;
 
 public class GameObjects {
 
+	boolean isAlive = true;
 	int x;
 	int y;
 	int width;

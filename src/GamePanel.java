@@ -11,6 +11,9 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 
+ 
+  int speed = 5;
+  boolean isMoving = false;
   Timer timer;
   GameObjects object;
   final int MENU_STATE = 0;
@@ -19,6 +22,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
   int currentState = MENU_STATE;
   Font titleFont = new Font("Arial", Font.PLAIN, 48);
   Rocketship player = new Rocketship(250,700,50,50);
+  ObjectManager fred = new ObjectManager(player);
+  
   
   @Override
 
@@ -87,7 +92,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 void updateGameState() {
 		
-		player.update();
+		fred.update();
+		
+if(isMoving) {
+			
+			player.x += speed;
+			
+		}
 		
 	}
 
@@ -128,7 +139,7 @@ void drawGameState(Graphics g) {
 	
 g.setColor(Color.green);
 
-player.draw(g);
+fred.draw(g);
 	
 	
 }
@@ -165,15 +176,36 @@ void drawEndState(Graphics g) {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+	
+		
+	if(!isMoving) {
+		
+		
 			
-			currentState += 1;
+			if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				
+			speed = -5;
+			isMoving = true;
+			}
 			
-			if(currentState > END_STATE){
+		 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			
+			speed = 5;
+			isMoving = true;
+		 }
+		 else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+				currentState += 1;
+				
+				if(currentState > END_STATE){
 
-                currentState = MENU_STATE;
+	                currentState = MENU_STATE;
 
-        }
+	        }
+		}}
+		
+		
+
 
 
 			
@@ -181,10 +213,15 @@ void drawEndState(Graphics g) {
 		
 		
 		
-	}
+	
+
+		
+		
+		
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		isMoving = false;
 		
 	}
 	
