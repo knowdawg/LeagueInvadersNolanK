@@ -1,43 +1,53 @@
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class ObjectManager {
 
-	Rocketship bob;
-	Lazer[] lazers = new Lazer[0];
+	Rocketship player;
+	ArrayList<Lazer> lazers = new ArrayList<Lazer>();
 	
 	ObjectManager (Rocketship bill){
 		
-		this.bob = bill;
+		this.player = bill;
 		
 	}
 	
 	void update(){
 		
-		bob.update();
+		player.update();
+		
+		for (Lazer lazer : lazers) {
+					
+					lazer.update();
+					
+				}
+
 		
 	}
 	
 	void draw(Graphics g) {
 		
-		bob.draw(g);
+		player.draw(g);
 		
-	}
-	
-	void addLazer() {
-		
-		Lazer[] temp = new Lazer[lazers.length];
-		
-		for (int i = 0; i < lazers.length; i++) {
+		for (Lazer lazer : lazers) {
 			
-			lazers[i] = temp[i];
+			lazer.draw(g);
 			
 		}
 		
-		Lazer[] lazers = new Lazer[temp.length + 1];
-		//finish this
+	}
+	
+	void addLazer(Lazer newLazer) {
 		
+		
+						
+				lazers.add(newLazer);
+						
+					
+					
+				}
 		
 	}
 			
 	
-}
+

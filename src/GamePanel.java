@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
   Font titleFont = new Font("Arial", Font.PLAIN, 48);
   Rocketship player = new Rocketship(250,700,50,50);
   ObjectManager fred = new ObjectManager(player);
+  Random makeThemCool = new Random();
   
   
   @Override
@@ -204,8 +206,18 @@ void drawEndState(Graphics g) {
 	        }
 		}}
 		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 		
+			//int cool = makeThemCool.nextInt(10);
+			//fred.addLazer(new Lazer(player.x + (20 + cool), player.y , 5, 100));
+			fred.addLazer(new Lazer(player.x + (40), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (10), player.y - 20, 5, 120));
 
+
+
+			
+		}
+		
 
 
 			
