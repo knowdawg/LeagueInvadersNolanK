@@ -1,7 +1,9 @@
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class GameObjects {
-
+	
+	Rectangle rectangle = new Rectangle();
 	boolean isAlive = true;
 	int x;
 	int y;
@@ -31,8 +33,14 @@ public class GameObjects {
 		
 	}
 	
+																																		
+																																	
+																																
+																															
+}																														
+																													
+																												
+							
+					
+			
 	
-	
-	
-	
-}

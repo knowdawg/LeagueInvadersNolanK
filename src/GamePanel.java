@@ -13,7 +13,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 
  
-  int speed = 5;
+  int speed = 10;
   boolean isMoving = false;
   Timer timer;
   GameObjects object;
@@ -102,7 +102,12 @@ if(isMoving) {
 			
 		}
 		
+  fred.manageEnemies();
+
 	}
+
+
+
 
 void updateEndState() {
 	
