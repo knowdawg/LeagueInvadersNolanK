@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
           drawMenuState(g);
           
   }else if(currentState == GAME_STATE){
+	  		
 
           drawGameState(g);
           
@@ -95,6 +96,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 void updateGameState() {
 		
 		fred.update();
+		fred.checkCollision();
+		fred.purgeObjects();
+		purgeEverything();
 		
 if(isMoving) {
 			
@@ -159,7 +163,7 @@ void drawEndState(Graphics g) {
 	
 	g.setColor(Color.green);
 	g.setFont(titleFont);
-	 g.drawString("YOU KILLED ENIMIES", 0, 50);
+	 g.drawString("YOU KILLED " + fred.score + " ENIMIES", 0, 50);
 	 g.drawString("--Press 'ENTER'--", 50, 300);
 	
 }
@@ -239,6 +243,20 @@ void drawEndState(Graphics g) {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		isMoving = false;
+		
+	}
+	
+	
+	void purgeEverything(){
+		
+		if (player.isAlive == false) {
+			
+			currentState = END_STATE;
+			
+			player.isAlive = true;
+			
+		}
+		
 		
 	}
 	

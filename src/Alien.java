@@ -14,8 +14,7 @@ void update() {
 		
 	y += 5;
 	
-		
-		System.out.println(y);
+
 		
 	}
 		
