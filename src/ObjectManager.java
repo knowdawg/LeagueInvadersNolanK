@@ -21,6 +21,30 @@ public class ObjectManager {
 		
 		player.update();
 		
+		if (score > 100) {
+			
+			enemySpawnTime = 50;
+			
+		}
+		
+if (score > 250) {
+			
+			enemySpawnTime = 20;
+			
+		}
+
+if (score > 500) {
+	
+	enemySpawnTime = 5;
+	
+}
+
+if (score > 750) {
+	
+	enemySpawnTime = 1;
+	
+}
+		
 		for (Lazer lazer : lazers) {
 					
 					lazer.update();
@@ -79,6 +103,10 @@ public class ObjectManager {
                 addAlien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
 
 
+
+
+
+
 enemyTimer = System.currentTimeMillis();
         }
 }
@@ -123,8 +151,9 @@ for (int a = 0; a < lazers.size(); a ++) {
 	                player.isAlive = false;
 	       
 	                
-	             	/*for(Alien b : aliens){
-	             		aliens.remove(b);
+	             	/*for(int i = 0; i < aliens.size(); i++){
+	             		
+	             		aliens.remove(i);
 	             		
 	             	}*/
 	               

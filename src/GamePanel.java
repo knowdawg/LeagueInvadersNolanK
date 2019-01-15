@@ -5,14 +5,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 
- 
+	public static BufferedImage alienImg;
+
+    public static BufferedImage rocketImg;
+
+    public static BufferedImage bulletImg;
+
+    public static BufferedImage spaceImg;
+
+
   int speed = 10;
   boolean isMoving = false;
   Timer timer;
@@ -54,6 +65,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		
 		timer = new Timer(1000 / 60, this);
 		object = new GameObjects(10,10,100,100);
+		
+		try {
+
+            alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+            rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+            bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+            spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+    } catch (IOException e) {
+
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+    }
+
+
 		
 		
 	}
@@ -100,11 +131,21 @@ void updateGameState() {
 		fred.purgeObjects();
 		purgeEverything();
 		
-if(isMoving) {
+//if(isMoving) {
+			if(player.x > 10) {
 			
 			player.x += speed;
+			} else {
+				
+				player.x += 5;
+				
+			}
+		 
 			
-		}
+		
+			
+			
+		//}
 		
   fred.manageEnemies();
 
@@ -143,9 +184,8 @@ g.setColor(Color.green);
 
 void drawGameState(Graphics g) {
 	
-	g.setColor(Color.BLACK);
-
-	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height); 
+	
+	g.drawImage(GamePanel.spaceImg, 0, 0, LeagueInvaders.width, LeagueInvaders.height, null);
 	
 	
 g.setColor(Color.green);
@@ -189,22 +229,26 @@ void drawEndState(Graphics g) {
 		
 	
 		
-	if(!isMoving) {
+
 		
 		
 			
 			if(e.getKeyCode() == KeyEvent.VK_LEFT){
-				
+			
+			
+			
 			speed = -5;
-			isMoving = true;
+			 //isMoving = true;
+			
 			}
 			
-		 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		  if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			
+			 
 			speed = 5;
-			isMoving = true;
+			//isMoving = true;
 		 }
-		 else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+		  if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				
 				currentState += 1;
 				
@@ -213,7 +257,14 @@ void drawEndState(Graphics g) {
 	                currentState = MENU_STATE;
 
 	        }
-		}}
+				
+				if (currentState == END_STATE) {
+					
+					player = new Rocketship(250,700,50,50);
+					fred = new ObjectManager(player);
+					
+				}
+		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 		
@@ -221,6 +272,27 @@ void drawEndState(Graphics g) {
 			//fred.addLazer(new Lazer(player.x + (20 + cool), player.y , 5, 100));
 			fred.addLazer(new Lazer(player.x + (40), player.y - 20, 5, 120));
 			fred.addLazer(new Lazer(player.x + (10), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (20), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (30), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (50), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (60), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (0), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (70), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (80), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (90), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (100), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (110), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (120), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (130), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (140), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (150), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-40), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-10), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-20), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-30), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-50), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-60), player.y - 20, 5, 120));
+			fred.addLazer(new Lazer(player.x + (-70), player.y - 20, 5, 120));
 
 
 
